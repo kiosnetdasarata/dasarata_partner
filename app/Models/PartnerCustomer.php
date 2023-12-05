@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PartnerCustomer extends Model
@@ -27,6 +28,11 @@ class PartnerCustomer extends Model
         'tanggal_daftar',
         'status_customer'
     ];
+
+    public function partner() :BelongsTo
+    {
+        return $this->belongsTo(Partner::class, 'partner_id', 'id');
+    }
 
     public function paymentBill() :HasOne
     {

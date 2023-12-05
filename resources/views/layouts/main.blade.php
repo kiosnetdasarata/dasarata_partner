@@ -24,7 +24,8 @@
 @include('partials.navbar')
 
 {{-- Sidebar --}}
-@include('partials.partner.sidebar')
+{{-- @include('partials.partner.sidebar') --}}
+@include('partials.admin.sidebar')
 
   <div class="p-2 md:ml-60">
      <div class="p-4 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
@@ -36,19 +37,6 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
-    <script>
-        function notif(data){
-            Toastify({
-                text: data,
-                className: "info",
-                duration: 60000,
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-
-            }).showToast();
-        };
-    </script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
