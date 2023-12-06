@@ -15,10 +15,16 @@ Class CustomerService
 
     }
 
-    public function getCustomer()
+    public function getUnpaid()
     {
-        return $this->customerInterface->getAll();
+        return $this->customerInterface->getUnpaid();
     }
+
+    public function getCustomers()
+    {
+        return $this->customerInterface->getActive();
+    }
+
     public function create($request)
     {
 
@@ -28,7 +34,6 @@ Class CustomerService
             $filtered = $colData->except(['nama_paket', 'amount']);
             $dataMerge = [
                 'id' => Uuid::uuid4()->getHex(),
-                'slug' => Str::slug($request['nama']),
                 'partner_id' => 1,
                 'tanggal_daftar' => Carbon::now()->format('Y-m-d'),
             ];
@@ -49,8 +54,42 @@ Class CustomerService
 
     }
 
+    public function update($request, $id)
+    {
+        $colData = collect($request);
+
+        $this->customerInterface->update($colData->all(), $id);
+    }
+
     public function findCustomerById($id)
     {
         return $this->customerInterface->find($id);
+    }
+
+    public function regis($request, $id)
+    {
+
+        $checkId = collect($this->customerInterface->checkId($request['customer_id']))->isEmpty();
+
+        if($checkId == true ){
+
+            $data['customer_id'] = $request['customer_id'];
+
+            $this->customerInterface->update($data, $id);
+
+        }
+
+        return throw new \Exception('Customer ID Sudah Ada');
+
+    }
+
+    public function isolir($id)
+    {
+        $data = [
+            'date_isolir' => Carbon::now()->format('Y-m-d'),
+            'status_customer' => 'isolir',
+        ];
+
+        $this->customerInterface->update($data, $id);
     }
 }

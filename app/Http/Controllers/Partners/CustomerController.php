@@ -15,12 +15,21 @@ class CustomerController extends Controller
 
     }
 
+    //unpaid
     public function index()
     {
 
-        $customers = $this->customerService->getCustomer();
+        $customers = $this->customerService->getUnpaid();
 
         return view('partners.customers.index', compact('customers'));
+    }
+
+    //aktif
+    public function dataCustomers()
+    {
+        $customers = $this->customerService->getCustomers();
+
+        return view('partners.customers.data-customers', compact('customers'));
     }
 
     public function store(CustomerRequest $request)
@@ -38,14 +47,34 @@ class CustomerController extends Controller
         }
     }
 
-    public function edit($id)
+    public function update(Request $request, $id)
     {
-        $customer = $this->customerService->findCustomerById($id);
+        try{
+
+            $this->customerService->update($request->all(), $id);
+
+            return redirect('/partners/customers')->with('success', 'Customer successfully registered.');
+
+        }catch(\Exception $e){
+
+            return redirect('/partners/customers')->with('success', 'Customer has not been registered.');
+
+        }
     }
 
-    public function update()
+    public function regisCustomer(Request $request, $id)
     {
+        try{
 
+            $this->customerService->regis($request->all(), $id);
+
+            return redirect('/partners/customers')->with('success', 'Customer successfully registered.');
+
+        }catch(\Exception $e){
+
+            return redirect('/partners/customers')->with('success', 'Customer has not been registered.');
+
+        }
     }
 
     public function show($id)

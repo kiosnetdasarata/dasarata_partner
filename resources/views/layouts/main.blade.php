@@ -24,8 +24,8 @@
 @include('partials.navbar')
 
 {{-- Sidebar --}}
-{{-- @include('partials.partner.sidebar') --}}
-@include('partials.admin.sidebar')
+@include('partials.partner.sidebar')
+{{-- @include('partials.admin.sidebar') --}}
 
   <div class="p-2 md:ml-60">
      <div class="p-4 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">

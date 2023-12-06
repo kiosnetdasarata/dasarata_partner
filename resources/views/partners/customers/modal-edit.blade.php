@@ -14,7 +14,9 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="#">
+            <form action="{{ route('partners.customers.update', $customer->id) }}" method="post">
+                @csrf
+                @method('put')
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
                         <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap</label>
@@ -40,8 +42,8 @@
                 <div class="py-4">
                     <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
                     <input type="text" name="alamat" id="alamat" value="{{ old('alamat', $customer->alamat) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500
-                    @error('title') is-invalid @enderror">
-                    @error('nama')
+                    @error('alamat') is-invalid @enderror">
+                    @error('alamat')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
