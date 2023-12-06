@@ -11,7 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PaymentController extends Controller
 {
 
-    public function __construct(private PaymentService $paymentService)
+    public function __construct(protected PaymentService $paymentService)
     {
     }
 

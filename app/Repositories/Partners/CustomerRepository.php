@@ -9,8 +9,8 @@ use App\Models\PaymentBill;
 Class CustomerRepository implements CustomerInterface
 {
 
-    function __construct(private PartnerCustomer $partnerCustomer,
-                        private PaymentBill $paymentBill)
+    function __construct(protected PartnerCustomer $partnerCustomer,
+                        protected PaymentBill $paymentBill)
     {
 
     }

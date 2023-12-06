@@ -9,7 +9,7 @@ use App\Services\Admins\PartnerService;
 class PartnerController extends Controller
 {
 
-    public function __construct(private PartnerService $partnerService)
+    public function __construct(protected PartnerService $partnerService)
     {
 
     }
