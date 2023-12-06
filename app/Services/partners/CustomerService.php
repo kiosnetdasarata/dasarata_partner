@@ -83,13 +83,22 @@ Class CustomerService
 
     }
 
-    public function isolir($id)
+    public function isolir($request, $id)
     {
-        $data = [
-            'date_isolir' => Carbon::now()->format('Y-m-d'),
-            'status_customer' => 'isolir',
-        ];
 
-        $this->customerInterface->update($data, $id);
+        $data = collect([
+            'date_isolir' => Carbon::now()->format('Y-m-d'),
+        ]);
+
+        if($request['status'] == 'isolir'){
+            $data->put('status_customer', 'isolir');
+            return $this->customerInterface->update($data->all(), $id);
+        }else{
+            $data->put('status_customer', 'aktif');
+            return $this->customerInterface->update($data->all(), $id);
+        }
+
+        return throw new \Exception('Error updating');
+
     }
 }

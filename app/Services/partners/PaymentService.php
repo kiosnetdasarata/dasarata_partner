@@ -13,4 +13,9 @@ Class PaymentService
     {
         return $this->paymentInterface->getToday();
     }
+
+    public function getHistories()
+    {
+        return $this->paymentInterface->getHistories();
+    }
 }

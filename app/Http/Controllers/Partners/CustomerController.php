@@ -77,6 +77,21 @@ class CustomerController extends Controller
         }
     }
 
+    public function isolir(Request $request, $id)
+    {
+        try{
+
+            $this->customerService->isolir($request->all(), $id);
+
+            return redirect()->back()->with('success', 'Customer has been updated.');
+
+        }catch(\Exception $e){
+
+            return redirect()->back()->with(['error', $e->getMessage()]);
+
+        }
+    }
+
     public function show($id)
     {
         $customer = $this->customerService->findCustomerById($id);

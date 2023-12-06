@@ -24,8 +24,11 @@
 @include('partials.navbar')
 
 {{-- Sidebar --}}
-@include('partials.partner.sidebar')
-{{-- @include('partials.admin.sidebar') --}}
+@if (auth()->user()->role == 'admin')
+    @include('partials.admin.sidebar')
+@else
+    @include('partials.partner.sidebar')
+@endif
 
   <div class="p-2 md:ml-60">
      <div class="p-4 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">

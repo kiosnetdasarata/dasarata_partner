@@ -49,28 +49,28 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ( $customers as $customer)
+                @foreach ( $histories as $data)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $loop->iteration }}
                     </td>
                     <td class="gap-2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $customer->customer_id == null ? 'Belum Regis' : $customer->customer_id }}
+                        {{ $data->va }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $customer->nama }}
+                        {{ $data->payment_reff }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $customer->nomor_telpn }}
-                    </td>
-                    <td class="uppercase px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $customer->status_customer }}
+                        {{ $data->payment_channel }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a href="{{ route('partners.customers.show', $customer->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><span>Detail</span></a>
+                        {{ "Rp.".number_format($data->payment_total) }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><span>Print</span></a>
                     </td>
                 </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>

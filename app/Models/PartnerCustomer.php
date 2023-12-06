@@ -26,7 +26,8 @@ class PartnerCustomer extends Model
         'nomor_telpn',
         'area_cover',
         'tanggal_daftar',
-        'status_customer'
+        'status_customer',
+        'date_isolir'
     ];
 
     public function partner() :BelongsTo
