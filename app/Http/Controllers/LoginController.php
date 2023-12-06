@@ -27,7 +27,7 @@ class LoginController extends Controller
             if (auth()->check() && auth()->user()->role === 'admin') {
                 return redirect()->route('admin.dashboard.index');
             } elseif (auth()->check() && auth()->user()->role === 'mitra' && auth()->user()->is_active === 1) {
-                return redirect()->route('admin.dashboard.index');
+                return redirect()->route('partners.dashboard.index');
             }
         }
 

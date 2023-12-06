@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\partners\PaymentController;
+use App\Http\Controllers\Partners\PaymentController;
 use App\Http\Controllers\Partners\ProfileController;
 use App\Http\Controllers\Partners\CustomerController;
 use App\Http\Controllers\Partners\DashboardController;
