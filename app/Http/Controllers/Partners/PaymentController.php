@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\partners;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
-use App\Services\Partners\PaymentService;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\Partner\PaymentService;
 
 class PaymentController extends Controller
 {

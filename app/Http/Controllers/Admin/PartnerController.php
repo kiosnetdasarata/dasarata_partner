@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerRequest;
-use App\Services\Admins\PartnerService;
+use App\Services\Admin\PartnerService;
 
 class PartnerController extends Controller
 {

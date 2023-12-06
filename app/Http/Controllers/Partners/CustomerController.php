@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Partners;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
-use App\Services\Partners\CustomerService;
+use App\Services\Partner\CustomerService;
 
 class CustomerController extends Controller
 {

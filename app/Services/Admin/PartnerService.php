@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Admins;
+namespace App\Services\Admin;
 
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
