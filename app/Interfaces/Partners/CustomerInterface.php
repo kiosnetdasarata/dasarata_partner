@@ -12,6 +12,8 @@ interface CustomerInterface
     function updateBill($request, $id);
     function find($id);
     function checkId($id);
+    function virtualAccount($request);
+    function countAllCustomers();
 
     //dashboard
     function countUnpaid();

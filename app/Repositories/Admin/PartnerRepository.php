@@ -5,6 +5,7 @@ namespace App\Repositories\Admin;
 use App\Interfaces\Admin\PartnerInterface;
 use App\Models\Partner;
 use App\Models\User;
+use App\Models\VaCustomer;
 
 Class PartnerRepository implements PartnerInterface
 {
@@ -31,6 +32,11 @@ Class PartnerRepository implements PartnerInterface
     function store($request)
     {
         return $this->partner->create($request);
+    }
+
+    function storeUser($request)
+    {
+        return $this->user->create($request);
     }
 
     function update($request, $id)

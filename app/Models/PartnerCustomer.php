@@ -19,6 +19,7 @@ class PartnerCustomer extends Model
     protected $fillable = [
         'id',
         'partner_id',
+        'partner_customer_id',
         'customer_id',
         'nik',
         'nama',
@@ -37,6 +38,6 @@ class PartnerCustomer extends Model
 
     public function paymentBill() :HasOne
     {
-        return $this->hasOne(PaymentBill::class, 'customer_id', 'id');
+        return $this->hasOne(PaymentBill::class, 'customer_id', 'partner_customer_id');
     }
 }

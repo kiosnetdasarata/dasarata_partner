@@ -8,13 +8,15 @@ use App\Models\PartnerCustomer;
 use App\Models\HistoryPathnerPaid;
 use Illuminate\Support\Facades\DB;
 use App\Interfaces\Partners\CustomerInterface;
+use App\Models\VaCustomer;
 
 Class CustomerRepository implements CustomerInterface
 {
 
     function __construct(protected PartnerCustomer $partnerCustomer,
                         protected PaymentBill $paymentBill,
-                        protected HistoryPathnerPaid $historyPathnerPaid)
+                        protected HistoryPathnerPaid $historyPathnerPaid,
+                        protected VaCustomer $vaCustomer)
     {
 
     }
@@ -58,6 +60,16 @@ Class CustomerRepository implements CustomerInterface
     {
         //nanti tambah mitra id
         return $this->partnerCustomer->where([['customer_id', $id], ['partner_id', auth()->user()->partner_id]])->first();
+    }
+
+    function virtualAccount($request)
+    {
+        return $this->vaCustomer->create($request);
+    }
+
+    function countAllCustomers()
+    {
+        return $this->partnerCustomer->count();
     }
 
     //dashboard

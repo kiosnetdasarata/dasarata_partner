@@ -25,7 +25,7 @@ class PaymentBill extends Model
 
     public function customer() :BelongsTo
     {
-        return $this->belongsTo(PartnerCustomer::class, 'customer_id', 'id');
+        return $this->belongsTo(PartnerCustomer::class, 'customer_id', 'partner_customer_id');
     }
 
     public function histories() :HasMany

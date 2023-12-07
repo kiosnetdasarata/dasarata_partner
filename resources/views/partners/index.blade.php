@@ -23,15 +23,17 @@
       </div>
 </div>
 
+@isset($chart[0])
 <div class="max-w-full w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="flex justify-between">
-      <div>
-        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $chart[0]->aktif_count }}</h5>
-        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Customer this month</p>
-      </div>
+        <div>
+          <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $chart[0]->aktif_count }}</h5>
+          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Customer this month</p>
+        </div>
     </div>
     <div id="area-chart"></div>
-  </div>
+</div>
+@endisset
 
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script>

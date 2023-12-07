@@ -8,6 +8,7 @@ interface PartnerInterface
     function find($id);
     function count();
     function store($request);
+    function storeUser($request);
     function update($request, $id);
     function updateUser($request, $id);
 }

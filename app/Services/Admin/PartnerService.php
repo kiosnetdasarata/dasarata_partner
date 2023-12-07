@@ -30,29 +30,38 @@ Class PartnerService
         // 2. tahun dan tanggal
         // 3. 5 terakhir mitra ke berapa
 
-        $now = Carbon::now()->format('Ym');
-        $countPartner = $this->partnerInterface->count()+1;
-        $nomor = str_pad($countPartner, 4, '0', STR_PAD_LEFT);
-        $partnerId = '9'.$now.$nomor;
+        DB::transaction(function () use ($request) {
+            $now = Carbon::now()->format('Y');
+            $countPartner = $this->partnerInterface->count()+1;
+            $nomor = str_pad($countPartner, 3, '0', STR_PAD_LEFT);
+            $partnerId = '8'.$now.$nomor;
 
-        $mergeData = [
-            'id' => Uuid::uuid4()->getHex(),
-            'slug' => Str::slug($request['nama_perusahaan']),
-            'partner_id' => $partnerId,
-            'tanggal_terdaftar' => Carbon::now()->format('Y-m-d'),
-            'is_active' => 1,
-        ];
+            $mergeData = [
+                'id' => Uuid::uuid4()->getHex(),
+                'partner_id' => $partnerId,
+                'tanggal_terdaftar' => Carbon::now()->format('Y-m-d'),
+                'is_active' => 1,
+            ];
 
-        $request['nama_perusahaan'] = Str::title($request['nama_perusahaan']);
-        $request['penanggung_jawab'] = Str::title($request['penanggung_jawab']);
+            $request['nama_perusahaan'] = Str::title($request['nama_perusahaan']);
+            $request['penanggung_jawab'] = Str::title($request['penanggung_jawab']);
 
-        $colReq = collect($request);
-        $data = $colReq->merge($mergeData);
+            $colReq = collect($request);
+            $data = $colReq->merge($mergeData);
 
-        $this->partnerInterface->store($data->all());
+            $partner = $this->partnerInterface->store($data->all());
 
-        // dd($data);
+            $user = [
+                'id' => Uuid::uuid4()->getHex(),
+                'partner_id' => $partner->partner_id,
+                'username' => $partner->partner_id,
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'is_active' => 1,
+                'role' => 'mitra'
+            ];
 
+            $this->partnerInterface->storeUser($user);
+        });
     }
 
     public function update($request, $id)

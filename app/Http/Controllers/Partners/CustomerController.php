@@ -38,10 +38,6 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request): RedirectResponse
     {
 
-        if ($request->user()->cannot('create', $this->customerService->create($request->validated()))) {
-            abort(403);
-        }
-
         try{
 
             $this->customerService->create($request->validated());

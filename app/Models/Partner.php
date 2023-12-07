@@ -19,7 +19,6 @@ class Partner extends Model
         'id',
         'partner_id',
         'nama_perusahaan',
-        'slug',
         'penanggung_jawab',
         'alamat',
         'nomor_telpn',

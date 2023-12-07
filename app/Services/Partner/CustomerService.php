@@ -26,15 +26,23 @@ Class CustomerService
     }
 
     public function create($request)
-    {
+    {;
 
         DB::transaction(function () use ($request) {
+            $countPartner = $this->customerInterface->countAllCustomers()+1;
+            $nomor = str_pad($countPartner, 9, '0', STR_PAD_LEFT);
+            $virtualAccount = '9'.$nomor;
+
+            $countCusPartner = $this->customerInterface->countAllCustomers()+1;
+            $nomor = str_pad($countCusPartner, 5, '0', STR_PAD_LEFT);
+            $cusId = '9'.$nomor;
 
             $colData = collect($request);
             $filtered = $colData->except(['nama_paket', 'amount']);
             $dataMerge = [
                 'id' => Uuid::uuid4()->getHex(),
-                'partner_id' => 1,
+                'partner_id' => auth()->user()->partner_id,
+                'partner_customer_id' => $cusId,
                 'tanggal_daftar' => Carbon::now()->format('Y-m-d'),
             ];
 
@@ -43,12 +51,19 @@ Class CustomerService
 
             $addBill = collect([
                 'id' => Uuid::uuid4()->getHex(),
-                'virtual_account' => 12345678,
-                'customer_id' => $customerId->id,
+                'virtual_account' => $virtualAccount,
+                'customer_id' => $customerId->partner_customer_id,
                 'nama_paket' => $request['nama_paket'],
                 'amount' => $request['amount'],
             ]);
 
+            $va = [
+                'va' => $virtualAccount,
+                'customer_personal_id' => $customerId->partner_customer_id,
+                'aplikasi' => 2
+            ];
+
+            $this->customerInterface->virtualAccount($va);
             $this->customerInterface->storeBill($addBill->all());
         });
 
