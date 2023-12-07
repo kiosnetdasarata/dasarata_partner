@@ -16,12 +16,22 @@ Class PaymentRepository implements PaymentInterface
     function getToday()
     {
         $now = Carbon::now();
-        return $this->historyPathnerPaid->whereDate('payment_date', '=', $now)->filter(request(['search']))->paginate(10);
+        return $this->historyPathnerPaid->where('partner_id', auth()->user()->partner_id)->whereDate('payment_date', '=', $now)->filter(request(['search']))->paginate(10);
     }
 
     function getHistories()
     {
-        return $this->historyPathnerPaid->latest()->filter(request(['search']))->paginate(10);
+        return $this->historyPathnerPaid->where('partner_id', auth()->user()->partner_id)->latest()->filter(request(['search']))->paginate(10);
+    }
+
+    function countHistories()
+    {
+        return $this->historyPathnerPaid->where('partner_id', auth()->user()->partner_id)->count();
+    }
+
+    function find($id)
+    {
+        return $this->historyPathnerPaid->find($id);
     }
 
 }

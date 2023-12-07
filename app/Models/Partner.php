@@ -17,7 +17,7 @@ class Partner extends Model
 
     protected $fillable = [
         'id',
-        'mitra_id',
+        'partner_id',
         'nama_perusahaan',
         'slug',
         'penanggung_jawab',
@@ -37,6 +37,6 @@ class Partner extends Model
 
     public function user() :HasOne
     {
-        return $this->hasOne(User::class, 'partner_id', 'id');
+        return $this->hasOne(User::class, 'partner_id', 'partner_id');
     }
 }

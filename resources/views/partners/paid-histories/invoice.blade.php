@@ -1,136 +1,8 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/app.css','resources/js/app.js'])
-    <title>Laravel Snappy PDF Example</title>
-</head>
-<style>
-    @page {
-        margin: 0;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        width: 83%;
-        margin: 20pt 50pt 20pt 50pt;
-        display: flex
-    }
-
-    header {
-        text-align: center;
-    }
-
-    h1 {
-        margin: 0;
-    }
-
-    .center {
-        position: relative;
-        top: 15%;
-        width: 100%;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .center-table {
-        position:  absolute;
-        top: 20%;
-        width: 500px;
-        margin: auto;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .topright {
-        position: absolute;
-        top: 15px;
-        right: 16px;
-        font-size: 18px;
-    }
-
-    .topleft {
-        position: absolute;
-        top: 50px;
-        left: 16px;
-        font-size: 18px;
-    }
-
-    table {
-    border-collapse: collapse;
-    width: 100%;
-    }
-
-    th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    }
-
-    tr:hover {background-color: coral;}
-
-
-    .content {
-        margin: 10px;
-        display: flex;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 0px;
-    }
-
-    th,
-    td {
-        border: 1px solid #808080;
-        padding: 2px;
-        text-align: left;
-    }
-
-    th {
-        font-size: 14px;
-    }
-
-    td {
-        font-size: 12px;
-    }
-</style>
-<body>
-    <img style=" width: 25%; " class="topleft" src="https://storage.googleapis.com/developer_dasarata/logo-mitra/logo.png"
-        alt="Background Image">
-    <img style=" width: 15%; height: auto; " class="topright" src="https://storage.googleapis.com/developer_dasarata/logo-mitra/mitra.jpg"
-        alt="Background Image">
-
-    <div class="center">INVOICE</div>
-    <div class="center-table">
-        <table>
-            <tr>
-              <th>Nama Paket</th>
-              <th>Harga</th>
-              <th>Points</th>
-            </tr>
-            <tr>
-              <td>Peter</td>
-              <td>Griffin</td>
-              <td>$100</td>
-            </tr>
-          </table>
-    </div>
-</body>
-</html> --}}
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Surat Jalan</title>
+    <title>Invoice</title>
 </head>
 <style>
     @page {
@@ -138,7 +10,7 @@
     }
 
     body {
-        font-family: Arial, sans-serif;
+        font-family: "Times New Roman", Times, serif;
     }
 
     .container {
@@ -147,14 +19,30 @@
         display: flex
     }
 
-    header {
+    h3 {
+        margin: 20px;
         text-align: center;
     }
 
-    h1 {
-        margin: 0;
+    footer {
+        text-align: center;
+        padding: 10;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-size: 14px;
+        font-style: bold;
     }
 
+    .signature {
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 150px;
+        right: 90;
+        width: 20%;
+        font-size: 14px;
+    }
 
     .content {
         margin: 10px;
@@ -169,8 +57,7 @@
 
     th,
     td {
-        border: 1px solid #808080;
-        padding: 2px;
+
         text-align: left;
     }
 
@@ -181,153 +68,291 @@
     td {
         font-size: 12px;
     }
+
+    .header-image {
+        max-height: 100px;
+        width: 200px;
+        padding: 30px 10 0 20;
+    }
+    .header-mitra-image {
+        max-height: 100px;
+        max-width: 200px;
+        padding: 30px 20 0 10;
+        float: right;
+    }
+
+    .p-style {
+        font-size: 12px;
+        padding: 1px;
+        margin: 0;
+        font-style: bold;
+    }
+    header{
+        height: 100px;
+        margin-bottom: 20px;
+    }
 </style>
 </head>
 
 <body>
-    {{-- <img style=" width: 50%; height: auto;  position: fixed; top: 0; left: 0;z-index: -1" src="https://storage.googleapis.com/developer_dasarata/logo-mitra/logo.png"
-        alt="Background Image"> --}}
+    <img style=" width: 50%; height: auto;  position: fixed; bottom: 0; right: 0;z-index: -1; opacity: 0.4;"
+        src="favicon.png" alt="Background Image">
     <div class="container">
         <header>
-            <table style="margin: 0; border-bottom:solid black; padding:0;">
-                <td style="border: none;  width: 140px">
-                    <img src="logo.png" style=" height:auto; width:140px;  padding: 30px 10 0 0">
-                </td>
-                <td style="border: none; padding: 30px 0 5px 0; margin-right:200px; font-size: 15px">
-                    <h3 style="padding: 0; margin:0">
-                        PT. GARUDA LINTAS CAKRAWALA
-                        <h6 style="padding: 0; margin:0">
-                            Jl. Terusan Ambarawa No.41 E, Sumbersari <br>
-                            Kec. Lowokwaru, Kota Malang, Jawa Timur 65145
-                        </h6>
-                    </h3>
-                </td>
-            </table>
-
-
+            <img src="https://storage.googleapis.com/developer_dasarata/logo-mitra/logo.png" class="header-image">
+            <img src="https://storage.googleapis.com/developer_dasarata/logo-mitra/mitra.jpg" class="header-mitra-image">
         </header>
 
-
         <div class="content">
-            <p style="margin-top: 0px; font-size:13px"><strong>Perihal : </strong> Surat Jalan</p>
-            <table style="margin-top: 10px">
+            <h3>
+                INVOICE
+            </h3>
+
+            {{-- table informasi data invoice --}}
+            <table style="margin-top: 10px; width:100%;">
                 <thead>
                     <tr>
-                        <th style="border: none; padding:0px">
-                            <p style="font-size:12px; padding:0px; margin:2px">
-                                <strong>Tanggal </strong>
-
-                            </p>
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong>No. Surat Jalan</strong></p>
-                        </th>
-                        <th style="border: none; ">
-                            <p style="font-size:12px; padding:0px; margin:2px">
-                                <strong>: </strong>
-
-                            </p>
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong>:</strong></p>
-                        </th>
-                        <th style="border: none; ">
-                            <p style="font-size:12px; padding:0px; margin:2px">
-
-                                {{-- {{ \Carbon\Carbon::parse($data->shipping_date)->format('d F Y') }} --}}
-                            </p>
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong></strong> </p>
-                        </th>
-                        <th style="border: none">
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong>Tujuan
+                        <th style="border: none; padding:0px; width:50%;">
+                            <p class="p-style">
+                                <strong>
+                                    Kepada :
                                 </strong>
                             </p>
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong>Dikirim Dengan</strong>
+                            <p class="p-style">
+                                <strong>
+                                    {{ $payment->customerBill->customer->nama }}
+                                </strong>
+                            </p>
+                            <p class="p-style">
+                                <strong>{{ $payment->customerBill->customer->alamat }}</strong>
+                            </p>
+                            <p class="p-style">
+                                <strong>
+                                    {{ $payment->customerBill->customer->nomor_telpn }}
+                                </strong>
                             </p>
                         </th>
-                        <th style="border: none; ">
-                            <p style="font-size:12px; padding:0px; margin:2px">
-                                <strong>: </strong>
-
+                        <th>
+                            <p class="p-style">
+                                <strong>
+                                    No. Invoice
+                                </strong>
                             </p>
-                            <p style="font-size:12px; padding:0px; margin:2px"><strong>:</strong></p>
+                            <p class="p-style">
+                                <strong>
+                                    Tanggal Ivoice
+                                </strong>
+                            </p>
+                            <p class="p-style">
+                                <strong>
+                                    ID Pelanggan
+                                </strong>
+                            </p>
                         </th>
-
+                        <th>
+                            <p class="p-style">
+                                {{-- : GLC/INV-0003-10/10/23 --}}
+                                : {{ $payment->trx_id }}
+                            </p>
+                            <p class="p-style">
+                                : {{ $date }}
+                            </p>
+                            <p class="p-style">
+                                : {{ $payment->customerBill->customer->customer_id }}
+                            </p>
+                        </th>
                     </tr>
+                    {{-- <tr>
+                        <th style="border: none; padding:0px; width:50%;">
+                        </th>
+                        <th style="border: none; width:20%">
+                            <p class="p-style">
+                                <strong>
+                                    Jatuh Tempo
+                                </strong>
+                            </p>
+                        </th>
+                        <th style="border: none; width:30%">
+                            <p class="p-style">
+                                : 10 November 2023
+                            </p>
+                        </th>
+                    </tr> --}}
                 </thead>
             </table>
 
 
-            <h4 style="margin: 10px 0 10px 0">Detail Barang</h4>
-            <h6 style="margin: 0px">
-                Semua barang dalam kondisi baik, harap untuk terima barang dengan baik. <p
-                    style="color: red; font-size: 10px; margin: 0px 0 5px 0">
-                    Barang yang sudah diterima tidak bisa dikembalikan
-                </p>
-            </h6>
+            {{-- table informasi jumlah invoice --}}
+            <table style="margin-top: 30px;">
+                <thead style="border-bottom: 2px solid black; border-top: 2px solid black;">
+                    <tr>
+                        <th style="padding: 4px;">No.</th>
+                        <th style="text-align: center;">Nama Paket</th>
+                        <th style="text-align: center;">Metode Pembayaran</th>
+                        <th style="text-align: center;">Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody style="border-bottom: 2px solid black">
+                    <tr style="font-style: bold;">
+                        <td style="width: 20px; text-align: center;">1</td>
+                        <td style="padding: 10px;text-align: center;">
+                            <p class="p-style">
+                                {{ $payment->customerBill->nama_paket }}
+                            </p>
+                        </td>
+                        <td style="padding: 5px;text-align: center;">
+                            <p class="p-style">
+                                {{ $payment->payment_channel }}
+                            </p>
+                        </td>
+                        <td>
+                            <p style="text-align: center;" class="p-style">
+                                {{ "Rp.".number_format($payment->customerBill->amount) }}
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <p style="font-size:12px; padding:0px; margin-top:20px">
-                <strong>Diterima : </strong>
-            </p>
-            <br>
-            <br>
-
-            </p>
-            <table style="margin-top: 20px">
+            {{-- <table style="margin-top: 10px; width:100%; ">
                 <thead>
-                    <tr style="text-align: center;">
-                        <th style="border: none; ">
-                            <p style="font-size:12px; padding:0px; margin:2px; text-align: center;">
-                                <strong>Penerima </strong>
+                    <tr>
+                        <th style="border: none; padding:0px; width:50%;">
+
+                        </th>
+                        <th style="border-bottom :2px solid black; width:20%">
+                            <p class="p-style"><strong>Dasar Pengenaan Pajak
+                                </strong>
                             </p>
-                            <br>
-                            <br>
-                            <p style="font-size:12px; padding:0px; margin:2px; text-align: center;">
-                                Awan
+                            <p class="p-style"><strong>PPN 11%</strong>
+                            </p>
+                            <p class="p-style">
+                                <strong>Biaya Materai</strong>
                             </p>
                         </th>
-                        <th>
-                            <p
-                                style="font-size:12px; padding:0px; margin:2px; text-align: center; border: 1px solid #808080;">
-                                <strong>Driver </strong>
+                        <th style="border-bottom :2px solid black; width:5%">
+                            <p class="p-style">
+                                :
+
                             </p>
-                            <br>
-                            <br>
-                            <p style="font-size:12px; padding:0px; margin:2px; text-align: center;">
+                            <p class="p-style"> :
+                            </p>
+
+                            <p class="p-style">
+                                :
 
                             </p>
                         </th>
-                        <th>
-                            <p
-                                style="font-size:12px; padding:0px; margin:2px; text-align: center; border: 1px solid #808080;">
-                                <strong>Loading </strong>
+                        <th style="border-bottom :2px solid black; width:25%">
+                            <p class="p-style" style="text-align : right;">
+                                1.351.351
                             </p>
-                            <br>
-                            <br>
-                            <p style="font-size:12px; padding:0px; margin:2px; text-align: center;">
-                                Awan
+                            <p class="p-style" style="text-align : right;">
+                                148.649
                             </p>
-                        </th>
-                        <th>
-                            <p
-                                style="font-size:12px; padding:0px; margin:2px; text-align: center; border: 1px solid #808080;">
-                                <strong>Warehouse </strong>
-                            </p>
-                            <br>
-                            <br>
-                            <p style="font-size:12px; padding:0px; margin:2px; text-align: center;">
-                                Awan
+
+                            <p class="p-style" style="text-align : right;">
+                                -
+
                             </p>
                         </th>
 
                     </tr>
-                </thead>
-            </table>
+                    <tr>
+                        <th style="border: none; padding:0px; width:50%;">
+                        </th>
+                        <th style="border: none; width:20%">
+                            <p class="p-style"><strong>Total
+                                </strong>
+                            </p>
+                        </th>
+                        <th style=" width:5%">
+                            <p class="p-style"><strong>:
+                                </strong>
+                            </p>
+                        </th>
+                        <th style="border: none; width:25%">
+                            <p class="p-style" style="text-align : right;"> 1.500.000
 
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+            </table> --}}
+            {{-- <div class="p-style">
+                <p style="font-style: bold-italic; margin-top:10px;">
+                    Terbilang : Satu Juta Lima Ratus Ribu Rupiah </p>
+                <p style="margin-top:5px;">
+                    Layanan ini merupakan objek dari Pajak Penghasilan</p>
+                <p style="margin-top:5px;">
+                    Note :
+                    <br>
+                    Sistem Pembayaran Melalui Transfer Bank
+                </p>
+            </div> --}}
+
+            {{-- table informasi pembayaran invoice--}}
+            {{-- <table style="width: 100%; margin-top:10px;">
+                <tbody>
+                    <tr>
+                        <td style="width: 15%; ">
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                Bank
+
+                            </p>
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                No. Rekening
+                            </p>
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                A/n
+                            </p>
+                        </td>
+                        <td style="width: 85%;">
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                : BRI (Bank Rakyat Indonesia)
+
+                            </p>
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                : 034401112223306
+                            </p>
+                            <p class="p-style" style="padding: 3px 0 3px 0;">
+                                : PT GARUDA LINTAS CAKRAWALA
+                            </p>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table> --}}
+
+
+            {{-- signature--}}
+            <div class="signature">
+                <p class="p-style" style="margin-bottom: 70px;">
+                    Malang, {{ $date }}
+
+                </p>
+                <p class="p-style"
+                    style=" width: auto; border-bottom: 1px solid black;  text-transform: uppercase; text-align:center;">
+                    Ilham Saputra W.
+                </p>
+                <p class="p-style" style="text-align:center;">
+                    Director
+                </p>
+            </div>
 
         </div>
     </div>
+    <footer>
+        PT. GARUDA LINTAS CAKRAWALA
+        <p style="font-size:12px; text-align:center">
+            Head Office JL. Terusan Ambarawa 41 E, Kelurahan Sumbersari, Kecamatan Lowokwaru - Kota Malang
+            (65145)
+            <br>
+            Tel : 0812 2227 6121 | email : info@dasarata.com
+        </p>
+    </footer>
 
 </body>
 
 </html>
-
-
-
-

@@ -51,6 +51,6 @@ class User extends Authenticatable
 
     public function mitra() :BelongsTo
     {
-        return $this->belongsTo(Partner::class, 'partner_id', 'id');
+        return $this->belongsTo(Partner::class, 'partner_id', 'partner_id');
     }
 }

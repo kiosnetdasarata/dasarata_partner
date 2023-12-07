@@ -9,4 +9,5 @@ interface PartnerInterface
     function count();
     function store($request);
     function update($request, $id);
+    function updateUser($request, $id);
 }

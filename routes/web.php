@@ -49,6 +49,7 @@ Route::middleware(['mitra'])->group(function() {
                 Route::get('/', 'index')->name('index');
                 Route::get('/histories-paid', 'historyPaid')->name('historyPaid');
                 Route::get('/{id}/show', 'show')->name('show');
+                Route::get('/{id}/invoice', 'printInvoice')->name('printInvoice');
             });
         });
 
@@ -56,7 +57,7 @@ Route::middleware(['mitra'])->group(function() {
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/{id}/edit', 'edit')->name('edit');
-                Route::get('/{id}', 'update')->name('update');
+                Route::put('/{id}', 'update')->name('update');
             });
         });
     });

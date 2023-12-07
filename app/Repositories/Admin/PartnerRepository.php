@@ -4,11 +4,13 @@ namespace App\Repositories\Admin;
 
 use App\Interfaces\Admin\PartnerInterface;
 use App\Models\Partner;
+use App\Models\User;
 
 Class PartnerRepository implements PartnerInterface
 {
 
-    function __construct(private Partner $partner)
+    function __construct(private Partner $partner,
+                        private User $user)
     {}
 
     function getAll()
@@ -33,7 +35,12 @@ Class PartnerRepository implements PartnerInterface
 
     function update($request, $id)
     {
-        return $this->partner->where('id', $id)->update($request);
+        return $this->partner->where('partner_id', $id)->update($request);
+    }
+
+    function updateUser($request, $id)
+    {
+        return $this->user->where('partner_id', $id)->update($request);
     }
 
 }

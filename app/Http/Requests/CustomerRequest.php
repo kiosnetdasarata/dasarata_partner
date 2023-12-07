@@ -27,6 +27,7 @@ class CustomerRequest extends FormRequest
             'alamat' => 'required|string',
             'nomor_telpn' => 'required|numeric|min:10',
             'area_cover' => 'required|string',
+            'customer_id' => 'required',
             'nama_paket' => 'required|string',
             'amount' => 'required',
         ];
@@ -42,6 +43,7 @@ class CustomerRequest extends FormRequest
             'nomor_telpn.min' => 'Nomor Telephone minimal 10 angka',
             'nomor_telpn.max' => 'Nomor Telephone max 16 angka',
             'area_cover.required' => 'Area Cover Harus Di Isi',
+            'customer_id.required' => 'Customer ID Harus Di Isi',
             'nama_paket.required' => 'Nama Paket Harus Di Isi',
             'amount.required' => 'Amount Harus Di Isi',
         ];

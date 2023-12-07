@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use App\Interfaces\Admin\PartnerInterface;
 
 Class PartnerService
@@ -37,7 +38,7 @@ Class PartnerService
         $mergeData = [
             'id' => Uuid::uuid4()->getHex(),
             'slug' => Str::slug($request['nama_perusahaan']),
-            'mitra_id' => $partnerId,
+            'partner_id' => $partnerId,
             'tanggal_terdaftar' => Carbon::now()->format('Y-m-d'),
             'is_active' => 1,
         ];
@@ -56,6 +57,25 @@ Class PartnerService
 
     public function update($request, $id)
     {
+        DB::transaction(function () use ($request, $id) {
+            $colData = collect($request);
+            $filtered = $colData->except('_token', '_method', 'password', 'confirm_password');
+            if(!isset($request['password'])){
+
+                return $this->partnerInterface->update($filtered->all(), $id);
+            }
+
+            if($request['password'] === $request['confirm_password']){
+                $pass = [
+                    'password' => $request['password'],
+                ];
+
+                $this->partnerInterface->update($filtered->all(), $id);
+                return $this->partnerInterface->updateUser($pass, $id);
+            }
+            return throw new \Exception('The password not same!');
+
+        });
 
     }
 }

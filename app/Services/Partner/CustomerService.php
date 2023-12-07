@@ -57,8 +57,15 @@ Class CustomerService
     public function update($request, $id)
     {
         $colData = collect($request);
+        $filtered = $colData->except(['_token', '_method', 'nama_paket', 'amount']);
 
-        $this->customerInterface->update($colData->all(), $id);
+        $bill = [
+            'nama_paket' => $request['nama_paket'],
+            'amount' => $request['amount'],
+        ];
+
+        $this->customerInterface->update($filtered->all(), $id);
+        $this->customerInterface->updateBill($bill, $id);
     }
 
     public function findCustomerById($id)
@@ -100,5 +107,27 @@ Class CustomerService
 
         return throw new \Exception('Error updating');
 
+    }
+
+    //dashboard
+    public function countUnpaid()
+    {
+        return $this->customerInterface->countUnpaid();
+    }
+    public function countPaidToday()
+    {
+        return $this->customerInterface->countPaidToday();
+    }
+    public function countCustomerActive()
+    {
+        return $this->customerInterface->countCustomerActive();
+    }
+    public function countCustomerIsolir()
+    {
+        return $this->customerInterface->countCustomerIsolir();
+    }
+    public function chart()
+    {
+        return $this->customerInterface->chart();
     }
 }

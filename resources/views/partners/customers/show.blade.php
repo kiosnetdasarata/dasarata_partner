@@ -82,12 +82,16 @@
             <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Tanggal Daftar</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-white">{{ $customer->tanggal_daftar }}</dd>
           </div>
-          @if ($customer->customer_id != null)
+          {{-- @if ($customer->customer_id != null)
             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Customer ID</dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-white">{{ $customer->customer_id }}</dd>
             </div>
-          @endif
+            @endif --}}
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Customer ID</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-white">{{ $customer->customer_id }}</dd>
+          </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Nama Paket</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-white">{{ $customer->paymentBill->nama_paket }}</dd>
@@ -99,7 +103,7 @@
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Status</dt>
             {{-- <dd class="uppercase mt-1 text-sm leading-6 text-red-700 sm:col-span-2 sm:mt-0 dark:text-red-500">{{ $customer->status_customer }}</dd> --}}
-            <dd class="uppercase mt-1 text-sm leading-6 text-red-700 sm:col-span-2 sm:mt-0 dark:text-red-500"><span class="{{ $customer->status_customer == 'isolir' ? 'bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300' : 'bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300' }}">{{ $customer->status_customer }}</span></dd>
+            <dd class="uppercase mt-1 text-sm leading-6 text-red-700 sm:col-span-2 sm:mt-0 dark:text-red-500"><span class="{{ $customer->status_customer == 'isolir' || $customer->status_customer == 'unpaid' ? 'bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300' : 'bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300' }}">{{ $customer->status_customer }}</span></dd>
           </div>
           @if ($customer->status_customer == 'isolir')
             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -109,18 +113,18 @@
           @endif
         </dl>
     </div>
-    @if ($customer->customer_id == null)
+    {{-- @if ($customer->customer_id == null)
         <div class="flex justify-end">
             <button id="regisCustomerButton" data-modal-target="regisCustomerModal" data-modal-toggle="regisCustomerModal" class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" type="button">
                 Regis customer
             </button>
         </div>
-    @endif
+    @endif --}}
 </div>
 
-@if ($customer->customer_id == null)
+{{-- @if ($customer->customer_id == null)
     @include('partners.customers.modal-regis')
-@endif
+@endif --}}
 
 @include('partners.customers.modal-edit')
 
