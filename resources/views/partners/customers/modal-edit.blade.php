@@ -88,7 +88,8 @@
                         Non-Aktif
                     </button>
                 </form>
-                @else
+            @elseif ($customer->status_customer == 'unpaid')
+            @else
                 <form action="{{ route('partners.customers.isolir', $customer->id) }}" method="post" class="d-inline">
                     @csrf
                     @method('put')

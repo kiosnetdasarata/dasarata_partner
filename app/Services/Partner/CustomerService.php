@@ -25,6 +25,11 @@ Class CustomerService
         return $this->customerInterface->getActive();
     }
 
+    public function find($id)
+    {
+        return $this->customerInterface->find($id);
+    }
+
     public function create($request)
     {;
 

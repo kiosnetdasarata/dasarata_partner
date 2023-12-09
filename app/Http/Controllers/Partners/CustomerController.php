@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Partners;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomerRequest;
 use App\Models\PartnerCustomer;
-use App\Services\Partner\CustomerService;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\CustomerRequest;
+use App\Services\Partner\CustomerService;
 
 class CustomerController extends Controller
 {
@@ -109,5 +111,17 @@ class CustomerController extends Controller
         $this->authorize('view', $customer);
 
         return view('partners.customers.show', compact('customer'));
+    }
+
+    public function invoice($id)
+    {
+        $now = Carbon::now()->locale('id_ID')->isoFormat('LL');
+        $customer = $this->customerService->find($id);
+
+        $pdf = Pdf::loadView('partners.customers.invoice-bill', [
+            'customer' => $customer,
+            'date' => $now,
+        ])->setPaper([0, 0, 419.528, 595.276]);
+        return $pdf->stream();
     }
 }
