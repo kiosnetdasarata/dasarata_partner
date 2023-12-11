@@ -42,6 +42,7 @@ Route::middleware(['mitra'])->group(function() {
                 Route::put('/{id}/regist', 'regisCustomer')->name('regisCustomer');
                 Route::put('/{id}/isolir', 'isolir')->name('isolir');
                 Route::get('/{id}/show', 'show')->name('show');
+                Route::get('/{va}/history-paid', 'historyPaid')->name('historyPaid');
                 Route::get('/{id}/print-invoice', 'invoice')->name('invoice');
             });
         });

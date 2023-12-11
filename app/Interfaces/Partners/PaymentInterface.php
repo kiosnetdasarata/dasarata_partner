@@ -8,4 +8,5 @@ interface PaymentInterface
     function getHistories();
     function countHistories();
     function find($id);
+    function getHistoryCustomer($va);
 }

@@ -133,14 +133,9 @@
                             </p>
                         </th>
                         <th>
-                            {{-- <p class="p-style">
-                                <strong>
-                                    No. Invoice
-                                </strong>
-                            </p> --}}
                             <p class="p-style">
                                 <strong>
-                                    Tanggal Ivoice
+                                    Tanggal Invoice
                                 </strong>
                             </p>
                             <p class="p-style">
@@ -151,10 +146,6 @@
                         </th>
                         <th>
                             <p class="p-style">
-                                {{-- : GLC/INV-0003-10/10/23 --}}
-                                : {{ $customer->paymentBill->trx_id }}
-                            </p>
-                            <p class="p-style">
                                 : {{ $date }}
                             </p>
                             <p class="p-style">
@@ -162,33 +153,16 @@
                             </p>
                         </th>
                     </tr>
-                    {{-- <tr>
-                        <th style="border: none; padding:0px; width:50%;">
-                        </th>
-                        <th style="border: none; width:20%">
-                            <p class="p-style">
-                                <strong>
-                                    Jatuh Tempo
-                                </strong>
-                            </p>
-                        </th>
-                        <th style="border: none; width:30%">
-                            <p class="p-style">
-                                : 10 November 2023
-                            </p>
-                        </th>
-                    </tr> --}}
                 </thead>
             </table>
-
 
             {{-- table informasi jumlah invoice --}}
             <table style="margin-top: 30px;">
                 <thead style="border-bottom: 2px solid black; border-top: 2px solid black;">
                     <tr>
                         <th style="padding: 4px;">No.</th>
+                        <th style="text-align: center;">Periode Tagihan</th>
                         <th style="text-align: center;">Nama Paket</th>
-                        {{-- <th style="text-align: center;">Metode Pembayaran</th> --}}
                         <th style="text-align: center;">Total Amount</th>
                     </tr>
                 </thead>
@@ -197,14 +171,14 @@
                         <td style="width: 20px; text-align: center;">1</td>
                         <td style="padding: 10px;text-align: center;">
                             <p class="p-style">
+                                {{ $invoice }}
+                            </p>
+                        </td>
+                        <td style="padding: 10px;text-align: center;">
+                            <p class="p-style">
                                 {{ $customer->paymentBill->nama_paket }}
                             </p>
                         </td>
-                        {{-- <td style="padding: 5px;text-align: center;">
-                            <p class="p-style">
-                                {{ $customer->paymentBill->payment_channel }}
-                            </p>
-                        </td> --}}
                         <td>
                             <p style="text-align: center;" class="p-style">
                                 {{ "Rp.".number_format($customer->paymentBill->amount) }}
@@ -287,52 +261,6 @@
                     </thead>
                 </table>
             </div>
-            {{-- <div class="p-style">
-                <p style="font-style: bold-italic; margin-top:10px;">
-                    Terbilang : Satu Juta Lima Ratus Ribu Rupiah </p>
-                <p style="margin-top:5px;">
-                    Layanan ini merupakan objek dari Pajak Penghasilan</p>
-                <p style="margin-top:5px;">
-                    Note :
-                    <br>
-                    Sistem Pembayaran Melalui Transfer Bank
-                </p>
-            </div> --}}
-
-            {{-- table informasi pembayaran invoice--}}
-            {{-- <table style="width: 100%; margin-top:10px;">
-                <tbody>
-                    <tr>
-                        <td style="width: 15%; ">
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                Bank
-
-                            </p>
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                No. Rekening
-                            </p>
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                A/n
-                            </p>
-                        </td>
-                        <td style="width: 85%;">
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                : BRI (Bank Rakyat Indonesia)
-
-                            </p>
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                : 034401112223306
-                            </p>
-                            <p class="p-style" style="padding: 3px 0 3px 0;">
-                                : PT GARUDA LINTAS CAKRAWALA
-                            </p>
-
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table> --}}
-
 
             {{-- signature--}}
             <div class="signature">
@@ -342,10 +270,10 @@
                 </p>
                 <p class="p-style"
                     style=" width: auto; border-bottom: 1px solid black;  text-transform: uppercase; text-align:center;">
-                    Ilham Saputra W.
+                    Ja'far Shodiq
                 </p>
                 <p class="p-style" style="text-align:center;">
-                    Director
+                    Manager Accounting
                 </p>
             </div>
 
@@ -357,9 +285,6 @@
             Head Office JL. Terusan Ambarawa 41 E, Kelurahan Sumbersari,<br> Kecamatan Lowokwaru - Kota Malang
             (65145)
             <br>
-        </p>
-        <p>
-            Tel : 0812 2227 6121 | email : info@dasarata.com
         </p>
     </footer>
 

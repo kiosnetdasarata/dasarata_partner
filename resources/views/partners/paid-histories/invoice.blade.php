@@ -14,8 +14,8 @@
     }
 
     .container {
-        width: 83%;
-        margin: 20pt 50pt 20pt 50pt;
+        width: 85%;
+        margin: 20pt 30pt 20pt 30pt;
         display: flex
     }
 
@@ -30,7 +30,7 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        font-size: 14px;
+        font-size: 12px;
         font-style: bold;
     }
 
@@ -39,8 +39,8 @@
         padding: 10px;
         position: fixed;
         bottom: 150px;
-        right: 90;
-        width: 20%;
+        right: 20;
+        width: 25%;
         font-size: 14px;
     }
 
@@ -71,18 +71,18 @@
 
     .header-image {
         max-height: 100px;
-        width: 200px;
+        width: 170px;
         padding: 30px 10 0 20;
     }
     .header-mitra-image {
-        max-height: 100px;
+        max-height: 70px;
         max-width: 200px;
         padding: 30px 20 0 10;
         float: right;
     }
 
     .p-style {
-        font-size: 12px;
+        font-size: 11px;
         padding: 1px;
         margin: 0;
         font-style: bold;
@@ -140,7 +140,7 @@
                             </p>
                             <p class="p-style">
                                 <strong>
-                                    Tanggal Ivoice
+                                    Tanggal
                                 </strong>
                             </p>
                             <p class="p-style">
@@ -325,6 +325,61 @@
                 </tbody>
             </table> --}}
 
+            <div style="float: left">
+                <p style="text-align: left; padding: 10px 0 0 0;" class="p-style">
+                    <strong>Metode Pembayaran :</strong>
+                </p>
+                <table style="margin-top: 10px; width:100%; ">
+                    <thead>
+                        <tr>
+                            <th style="border: none; padding:0px; width:50%;">
+
+                            </th>
+                            <th style="black; width:20%">
+                                <p class="p-style"><strong>BCA Virtual Account
+                                    </strong>
+                                </p>
+                                <p class="p-style"><strong>BRI Virtual Account</strong>
+                                </p>
+                                <p class="p-style">
+                                    <strong>Alfamart</strong>
+                                </p>
+                                <p class="p-style">
+                                    <strong>Indomaret</strong>
+                                </p>
+                            </th>
+                            <th style="black; width:5%">
+                                <p class="p-style">
+                                    :
+                                </p>
+                                <p class="p-style">
+                                    :
+                                </p>
+                                <p class="p-style"> :
+                                </p>
+                                <p class="p-style">
+                                    :
+                                </p>
+                            </th>
+                            <th style="black; width:25%">
+                                <p class="p-style" style="text-align : right;">
+                                    {{ '19005614'.$payment->customerBill->virtual_account }}
+                                </p>
+                                <p class="p-style" style="text-align : right;">
+                                    {{ '142321'.$payment->customerBill->virtual_account }}
+                                </p>
+                                <p class="p-style" style="text-align : right;">
+                                    {{ '352220'.$payment->customerBill->virtual_account }}
+                                </p>
+                                <p class="p-style" style="text-align : right;">
+                                    {{ '352221'.$payment->customerBill->virtual_account }}
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
 
             {{-- signature--}}
             <div class="signature">
@@ -334,10 +389,10 @@
                 </p>
                 <p class="p-style"
                     style=" width: auto; border-bottom: 1px solid black;  text-transform: uppercase; text-align:center;">
-                    Ilham Saputra W.
+                    Ja'far Shodiq
                 </p>
                 <p class="p-style" style="text-align:center;">
-                    Director
+                    Manager Accounting
                 </p>
             </div>
 
@@ -345,11 +400,10 @@
     </div>
     <footer>
         PT. GARUDA LINTAS CAKRAWALA
-        <p style="font-size:12px; text-align:center">
-            Head Office JL. Terusan Ambarawa 41 E, Kelurahan Sumbersari, Kecamatan Lowokwaru - Kota Malang
+        <p style="font-size:12px; text-align:center;padding : 10px">
+            Head Office JL. Terusan Ambarawa 41 E, Kelurahan Sumbersari,<br> Kecamatan Lowokwaru - Kota Malang
             (65145)
             <br>
-            Tel : 0812 2227 6121 | email : info@dasarata.com
         </p>
     </footer>
 

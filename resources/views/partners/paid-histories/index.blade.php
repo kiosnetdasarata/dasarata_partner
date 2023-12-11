@@ -73,6 +73,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $todays->links() }}
     </div>
 
 @endsection

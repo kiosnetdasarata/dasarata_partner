@@ -35,4 +35,9 @@ Class PaymentService
     {
         return $this->paymentInterface->find($id);
     }
+
+    public function historyPaidCustomer($va)
+    {
+        return $this->paymentInterface->getHistoryCustomer($va);
+    }
 }

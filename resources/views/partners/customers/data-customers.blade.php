@@ -117,6 +117,7 @@
             @endforeach
         </tbody>
     </table>
+    {{ $customers->links() }}
 </div>
 
 @include('partners.customers.modal-create')

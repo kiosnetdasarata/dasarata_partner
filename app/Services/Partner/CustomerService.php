@@ -42,11 +42,19 @@ Class CustomerService
             $nomor = str_pad($countCusPartner, 5, '0', STR_PAD_LEFT);
             $cusId = '9'.$nomor;
 
-            $colData = collect($request);
+            if (substr($request['nomor_telpn'], 0, 2) === '08') {
+                // Jika iya, ubah menjadi '628'
+                $phoneNumber = '62' . substr($request['nomor_telpn'], 1);
+            }else{
+                $phoneNumber = $request['nomor_telpn'];
+            }
+
+            $colData = collect($request)->except('nomor_telpn');
             $filtered = $colData->except(['nama_paket', 'amount']);
             $dataMerge = [
                 'id' => Uuid::uuid4()->getHex(),
                 'partner_id' => auth()->user()->partner_id,
+                'nomor_telpn' => $phoneNumber,
                 'partner_customer_id' => $cusId,
                 'tanggal_daftar' => Carbon::now()->format('Y-m-d'),
             ];

@@ -10,14 +10,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\CustomerRequest;
 use App\Services\Partner\CustomerService;
+use App\Services\Partner\PaymentService;
 
 class CustomerController extends Controller
 {
 
-    public function __construct(protected CustomerService $customerService)
-    {
-        // $this->authorizeResource(PartnerCustomer::class, 'partnerCustomer');
-    }
+    public function __construct(protected CustomerService $customerService,
+                                protected PaymentService $paymentService)
+    {}
 
     //unpaid
     public function index()
@@ -113,14 +113,24 @@ class CustomerController extends Controller
         return view('partners.customers.show', compact('customer'));
     }
 
-    public function invoice($id)
+    public function historyPaid($va)
     {
-        $now = Carbon::now()->locale('id_ID')->isoFormat('LL');
+
+        $histories = $this->paymentService->historyPaidCustomer($va);
+
+        return view('partners.customers.history-paid', compact('histories'));
+    }
+
+    public function invoice(Request $request, $id)
+    {
+        // $invoice = Carbon::createFromFormat('Y-m-d', $request['tgl_pemasangan'])->locale('id_ID')->isoFormat('LL');
+        $invoice = Carbon::parse( $request['tgl_pemasangan'], 'UTC')->isoFormat('MMMM');
         $customer = $this->customerService->find($id);
 
         $pdf = Pdf::loadView('partners.customers.invoice-bill', [
             'customer' => $customer,
-            'date' => $now,
+            'date' => Carbon::now()->locale('id_ID')->isoFormat('LL'),
+            'invoice' => $invoice,
         ])->setPaper([0, 0, 419.528, 595.276]);
         return $pdf->stream();
     }

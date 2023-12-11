@@ -23,12 +23,12 @@ Class CustomerRepository implements CustomerInterface
 
     function getUnpaid()
     {
-        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->get();
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->paginate(10);
     }
 
     function getActive()
     {
-        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->get();
+        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->paginate(20);
     }
 
     function store($request)

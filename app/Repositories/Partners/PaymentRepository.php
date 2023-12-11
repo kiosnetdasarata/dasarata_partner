@@ -34,4 +34,9 @@ Class PaymentRepository implements PaymentInterface
         return $this->historyPathnerPaid->find($id);
     }
 
+    function getHistoryCustomer($va)
+    {
+        return $this->historyPathnerPaid->where('va', $va)->latest()->paginate(20);
+    }
+
 }
