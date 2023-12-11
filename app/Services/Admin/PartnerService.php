@@ -55,7 +55,7 @@ Class PartnerService
             $bucketName = config('app.bucket');
             $slug = Str::slug($request['nama_perusahaan'], '_');
 
-            $filenametostore = uniqid().'_'.$slug.$request['logo_partner']->getClientOriginalExtension();
+            $filenametostore = uniqid().'_'.$slug.'.'.$request['logo_partner']->getClientOriginalExtension();
             $googleCloudStoragePath = 'logo-mitra/' . $filenametostore;
 
             $photoPath = UploadImageHelper::uploadPhoto($request['logo_partner'], $googleCloudStoragePath);
