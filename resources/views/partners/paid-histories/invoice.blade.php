@@ -207,7 +207,7 @@
                         </td>
                         <td>
                             <p style="text-align: center;" class="p-style">
-                                {{ "Rp.".number_format($payment->customerBill->amount) }}
+                                {{ "Rp.".number_format($payment->payment_total) }}
                             </p>
                         </td>
                     </tr>

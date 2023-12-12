@@ -56,6 +56,11 @@ Class CustomerRepository implements CustomerInterface
         return $this->partnerCustomer->with('paymentBill')->find($id);
     }
 
+    function findCustomer($id)
+    {
+        return $this->partnerCustomer->find($id);
+    }
+
     function checkId($id)
     {
         //nanti tambah mitra id

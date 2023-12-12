@@ -11,6 +11,7 @@ interface CustomerInterface
     function storeBill($request);
     function updateBill($request, $id);
     function find($id);
+    function findCustomer($id);
     function checkId($id);
     function virtualAccount($request);
     function countAllCustomers();

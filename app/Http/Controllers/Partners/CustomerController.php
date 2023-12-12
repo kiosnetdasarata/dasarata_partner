@@ -64,11 +64,12 @@ class CustomerController extends Controller
 
             $this->customerService->update($request->all(), $id);
 
-            return redirect('/partners/customers')->with('success', 'Customer successfully updated.');
+            // return redirect('/partners/customers')->with('success', 'Customer successfully updated.');
+            return redirect()->back()->with('success', 'Customer successfully updated.');
 
         }catch(\Exception $e){
 
-            return redirect('/partners/customers')->with('error', 'Customer failed to update.');
+            return redirect()->back()->with('error', 'Customer failed to update.');
             // return redirect('/partners/customers')->withErrors(['error', $e->getMessage()]);
 
         }

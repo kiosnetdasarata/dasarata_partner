@@ -84,6 +84,9 @@ Class CustomerService
 
     public function update($request, $id)
     {
+
+        $find = $this->customerInterface->findCustomer($id);
+
         $colData = collect($request);
         $filtered = $colData->except(['_token', '_method', 'nama_paket', 'amount']);
 
@@ -92,8 +95,10 @@ Class CustomerService
             'amount' => $request['amount'],
         ];
 
+        // dd($find);
+
         $this->customerInterface->update($filtered->all(), $id);
-        $this->customerInterface->updateBill($bill, $id);
+        $this->customerInterface->updateBill($bill, $find->partner_customer_id);
     }
 
     public function findCustomerById($id)
