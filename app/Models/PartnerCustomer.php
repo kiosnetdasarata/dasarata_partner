@@ -31,6 +31,15 @@ class PartnerCustomer extends Model
         'date_isolir'
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query->where('nama', 'like', '%'.$search.'%')
+                ->orWhere('customer_id', 'like', '%'.$search.'%')
+        );
+    }
+
     public function partner() :BelongsTo
     {
         return $this->belongsTo(Partner::class, 'partner_id', 'id');
