@@ -15,8 +15,7 @@ Class CustomerRepository implements CustomerInterface
 
     function __construct(protected PartnerCustomer $partnerCustomer,
                         protected PaymentBill $paymentBill,
-                        protected HistoryPathnerPaid $historyPathnerPaid,
-                        protected VaCustomer $vaCustomer)
+                        protected HistoryPathnerPaid $historyPathnerPaid)
     {
 
     }
@@ -65,11 +64,6 @@ Class CustomerRepository implements CustomerInterface
     {
         //nanti tambah mitra id
         return $this->partnerCustomer->where([['customer_id', $id], ['partner_id', auth()->user()->partner_id]])->first();
-    }
-
-    function virtualAccount($request)
-    {
-        return $this->vaCustomer->create($request);
     }
 
     function countAllCustomers()

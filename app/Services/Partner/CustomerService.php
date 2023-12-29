@@ -82,7 +82,6 @@ class CustomerService
                 'aplikasi' => 2
             ];
 
-            $this->customerInterface->virtualAccount($va);
             $this->customerInterface->storeBill($addBill->all());
         });
     }
@@ -99,8 +98,6 @@ class CustomerService
             'nama_paket' => $request['nama_paket'],
             'amount' => $request['amount'],
         ];
-
-        // dd($find);
 
         $this->customerInterface->update($filtered->all(), $id);
         $this->customerInterface->updateBill($bill, $find->partner_customer_id);

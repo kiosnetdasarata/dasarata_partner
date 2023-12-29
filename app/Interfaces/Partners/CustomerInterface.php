@@ -13,7 +13,6 @@ interface CustomerInterface
     function find($id);
     function findCustomer($id);
     function checkId($id);
-    function virtualAccount($request);
     function countAllCustomers();
     function getUnpaidForPrint();
 
