@@ -48,6 +48,9 @@
                         Payment Channel
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Payment Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Ammount
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -70,6 +73,9 @@
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $data->payment_channel }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $data->payment_date }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ "Rp.".number_format($data->payment_total) }}

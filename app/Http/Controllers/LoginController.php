@@ -29,6 +29,12 @@ class LoginController extends Controller
             } elseif (auth()->check() && auth()->user()->role === 'mitra' && auth()->user()->is_active === 1) {
                 return redirect()->route('partners.dashboard.index');
             }
+            else{
+                Auth::logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+                return redirect()->route('login');
+            }
         }
 
         return back()->with('loginError','login Fail!');

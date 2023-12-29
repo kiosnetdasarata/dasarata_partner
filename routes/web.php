@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\DashboardAfterLoginController;
 use App\Http\Controllers\Partners\PaymentController;
 use App\Http\Controllers\Partners\ProfileController;
 use App\Http\Controllers\Partners\CustomerController;
@@ -20,12 +21,10 @@ use App\Http\Controllers\Partners\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-})->middleware('guest')->name('login');
+Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-
+Route::get('/home', [DashboardAfterLoginController::class, 'index'])->middleware('dashboard')->name('home');
 Route::middleware(['mitra'])->group(function() {
     Route::prefix('partners')->name('partners.')->group(function() {
         Route::prefix('dashboard')->name('dashboard.')->group(function() {
