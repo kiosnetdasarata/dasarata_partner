@@ -36,7 +36,9 @@ Route::middleware(['mitra'])->group(function() {
         Route::prefix('customers')->name('customers.')->group(function () {
             Route::controller(CustomerController::class)->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::post('/print-invoice-batch', 'invoiceBatch')->name('invoiceBatch');
                 Route::get('/data-customer', 'dataCustomers')->name('dataCustomers');
+                Route::post('/import-data-customer', 'importDataCustomers')->name('importDataCustomers');
                 Route::post('/store', 'store')->name('store');
                 Route::put('/{id}/update', 'update')->name('update');
                 Route::put('/{id}/regist', 'regisCustomer')->name('regisCustomer');
@@ -49,7 +51,10 @@ Route::middleware(['mitra'])->group(function() {
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::controller(PaymentController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
+                Route::get('/paid-this-month', 'paidThisMonth')->name('paidThisMonth');
+                Route::get('/paid-this-month/export', 'exportPaidThisMonth')->name('exportPaidThisMonth');
                 Route::get('/histories-paid', 'historyPaid')->name('historyPaid');
+                Route::post('/histories-paid/export', 'exportHistoryPaid')->name('exportHistoryPaid');
                 Route::get('/{id}/show', 'show')->name('show');
                 Route::get('/{id}/invoice', 'printInvoice')->name('printInvoice');
             });

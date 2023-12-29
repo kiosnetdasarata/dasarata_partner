@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Partners;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\PartnerCustomer;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\CustomerRequest;
+use App\Http\Requests\ImportCsvRequest;
 use App\Services\Partner\CustomerService;
 use App\Services\Partner\PaymentService;
 
@@ -28,7 +28,11 @@ class CustomerController extends Controller
 
         return view('partners.customers.index', compact('customers'));
     }
-
+    
+    public function invoiceBatch(Request $request)
+    {
+        return $this->customerService->invoiceBatch($request);
+    }
     //aktif
     public function dataCustomers()
     {
@@ -125,14 +129,22 @@ class CustomerController extends Controller
     public function invoice(Request $request, $id)
     {
         // $invoice = Carbon::createFromFormat('Y-m-d', $request['tgl_pemasangan'])->locale('id_ID')->isoFormat('LL');
-        $invoice = Carbon::parse( $request['tgl_pemasangan'], 'UTC')->isoFormat('MMMM');
-        $customer = $this->customerService->find($id);
+       return $this->customerService->invoice($request, $id);
+    }
 
-        $pdf = Pdf::loadView('partners.customers.invoice-bill', [
-            'customer' => $customer,
-            'date' => Carbon::now()->locale('id_ID')->isoFormat('LL'),
-            'invoice' => $invoice,
-        ])->setPaper([0, 0, 419.528, 595.276]);
-        return $pdf->stream();
+    public function importDataCustomers(ImportCsvRequest $request)
+    {
+        try {
+            $this->customerService->importDataCustomers($request);
+
+            return redirect()->route('partners.customers.dataCustomers')->with('success', 'Data import success!');
+        } catch (\Throwable $e) {
+            if ($e->getCode() == 'HY000') {
+                // Handle the HY000 error condition here
+                return redirect()->route('partners.customers.dataCustomers')->with('error', 'Mohon periksa lagi data yang akan dimasukkan !');
+            }
+            return redirect()->route('partners.customers.dataCustomers')->with('error', $e->getMessage());
+        }
+        
     }
 }

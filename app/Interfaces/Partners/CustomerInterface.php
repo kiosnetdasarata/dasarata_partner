@@ -15,6 +15,7 @@ interface CustomerInterface
     function checkId($id);
     function virtualAccount($request);
     function countAllCustomers();
+    function getUnpaidForPrint();
 
     //dashboard
     function countUnpaid();

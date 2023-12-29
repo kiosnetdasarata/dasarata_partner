@@ -76,6 +76,11 @@ Class CustomerRepository implements CustomerInterface
     {
         return $this->partnerCustomer->count();
     }
+    
+    function getUnpaidForPrint()
+    {
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->orderBy('tanggal_daftar')->get();   
+    }
 
     //dashboard
     function countUnpaid()

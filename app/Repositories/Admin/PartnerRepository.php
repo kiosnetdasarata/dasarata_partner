@@ -24,6 +24,11 @@ Class PartnerRepository implements PartnerInterface
         return $this->partner->withCount('customers')->find($id);
     }
 
+    function findByPartnerId($partner_id)
+    {
+        return $this->partner->where('partner_id',$partner_id)->first();
+    }
+
     function count()
     {
         return $this->partner->count();

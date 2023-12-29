@@ -2,8 +2,10 @@
 
 namespace App\Services\Partner;
 
-use App\Interfaces\Partners\PaymentInterface;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PartnerCustomerExportExcel;
+use App\Interfaces\Partners\PaymentInterface;
 
 Class PaymentService
 {
@@ -39,5 +41,27 @@ Class PaymentService
     public function historyPaidCustomer($va)
     {
         return $this->paymentInterface->getHistoryCustomer($va);
+    }
+
+    public function getThisMonth()
+    {
+       return $this->paymentInterface->getThisMonth();
+    }
+
+    public function exportPaidThisMonth()
+    {
+        $data = $this->paymentInterface->getThisMonth();
+        $date =  $now = Carbon::now()->format('F-Y');
+
+        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-'.$date.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function exportHistoryPaid($request)
+    {
+        $startDate = $request['start_date'];
+        $endDate = $request['end_date'];
+        $data = $this->paymentInterface->getPaidRangeDate($startDate, $endDate);
+
+        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-'.$startDate.'-'.$endDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 }
