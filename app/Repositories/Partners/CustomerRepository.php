@@ -23,12 +23,12 @@ Class CustomerRepository implements CustomerInterface
 
     function getUnpaid()
     {
-        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(20);
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(25);
     }
 
     function getActive()
     {
-        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(20);
+        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(25);
     }
 
     function store($request)
@@ -76,10 +76,10 @@ Class CustomerRepository implements CustomerInterface
     {
         return $this->partnerCustomer->count();
     }
-    
+
     function getUnpaidForPrint()
     {
-        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->orderBy('tanggal_daftar')->get();   
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->orderBy('tanggal_daftar')->get();
     }
 
     //dashboard

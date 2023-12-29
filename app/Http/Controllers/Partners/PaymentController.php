@@ -57,6 +57,6 @@ class PaymentController extends Controller
     function printInvoice($id)
     {
         return $this->paymentService->printInvoice($id);
-        
+
     }
 }

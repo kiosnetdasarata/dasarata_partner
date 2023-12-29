@@ -67,7 +67,7 @@ class PaymentService
 
     public function exportPaidThisMonth()
     {
-        $data = $this->paymentInterface->getThisMonth();
+        $data = $this->paymentInterface->exportThisMonth();
         $date =  Carbon::now()->format('F-Y');
 
         return Excel::download(new PartnerCustomerExportExcel($data), 'payment-' . $date . '.xlsx', \Maatwebsite\Excel\Excel::XLSX);

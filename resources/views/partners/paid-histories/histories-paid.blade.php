@@ -5,9 +5,11 @@
 <div class="flex items-center mb-4">
     {{-- <h4 class="text-2xl font-bold dark:text-white">Data Customer</h4> --}}
     @include('partners.paid-histories.tabs')
+    @if ($histories->isNotEmpty())
     <button data-modal-target="export-history-modal" data-modal-toggle="export-history-modal" class="block ml-auto text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800" type="button">
         Export Payment
     </button>
+    @endif
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
     <div class="container mb-3">

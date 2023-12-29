@@ -10,5 +10,6 @@ interface PaymentInterface
     function countHistories();
     function find($id);
     function getHistoryCustomer($va);
+    function exportThisMonth();
     function getPaidRangeDate($startDate, $endDate);
 }
