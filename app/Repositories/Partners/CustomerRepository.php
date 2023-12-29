@@ -15,20 +15,19 @@ Class CustomerRepository implements CustomerInterface
 
     function __construct(protected PartnerCustomer $partnerCustomer,
                         protected PaymentBill $paymentBill,
-                        protected HistoryPathnerPaid $historyPathnerPaid,
-                        protected VaCustomer $vaCustomer)
+                        protected HistoryPathnerPaid $historyPathnerPaid)
     {
 
     }
 
     function getUnpaid()
     {
-        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(20);
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(25);
     }
 
     function getActive()
     {
-        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(20);
+        return $this->partnerCustomer->where([['status_customer', '!=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->filter(request(['search']))->paginate(25);
     }
 
     function store($request)
@@ -67,14 +66,14 @@ Class CustomerRepository implements CustomerInterface
         return $this->partnerCustomer->where([['customer_id', $id], ['partner_id', auth()->user()->partner_id]])->first();
     }
 
-    function virtualAccount($request)
-    {
-        return $this->vaCustomer->create($request);
-    }
-
     function countAllCustomers()
     {
         return $this->partnerCustomer->count();
+    }
+
+    function getUnpaidForPrint()
+    {
+        return $this->partnerCustomer->where([['status_customer', '=', 'unpaid'], ['partner_id', auth()->user()->partner_id]])->orderBy('tanggal_daftar')->get();
     }
 
     //dashboard

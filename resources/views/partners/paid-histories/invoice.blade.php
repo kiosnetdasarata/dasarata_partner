@@ -384,7 +384,7 @@
             {{-- signature--}}
             <div class="signature">
                 <p class="p-style" style="margin-bottom: 70px;">
-                    Malang, {{ $date }}
+                    {{ $partner->kecamatan }}, {{ $date }}
 
                 </p>
                 <p class="p-style"
@@ -401,8 +401,8 @@
     <footer>
         PT. GARUDA LINTAS CAKRAWALA
         <p style="font-size:12px; text-align:center;padding : 10px">
-            Head Office JL. Terusan Ambarawa 41 E, Kelurahan Sumbersari,<br> Kecamatan Lowokwaru - Kota Malang
-            (65145)
+            {{ $partner->alamat }}<br> KECAMATAN  {{ $partner->kecamatan }} -  {{ $partner->kabupaten }} - {{ $partner->provinsi }}
+            ({{ $partner->kode_pos }})
             <br>
         </p>
     </footer>

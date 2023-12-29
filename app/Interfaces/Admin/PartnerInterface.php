@@ -6,6 +6,7 @@ interface PartnerInterface
 {
     function getAll();
     function find($id);
+    function findByPartnerId($partner_id);
     function count();
     function store($request);
     function storeUser($request);

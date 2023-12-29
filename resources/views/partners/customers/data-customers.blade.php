@@ -4,6 +4,12 @@
 
 <div class="flex items-center mb-4">
     @include('partners.customers.tabs')
+    <button data-modal-target="importCustomerModal"
+            data-modal-toggle="importCustomerModal"
+            class="block ml-auto text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
+            type="button">
+            Import Customer
+        </button>
 </div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
@@ -120,6 +126,6 @@
     {{ $customers->links() }}
 </div>
 
-@include('partners.customers.modal-create')
+@include('partners.customers.modal-import')
 
 @endsection
