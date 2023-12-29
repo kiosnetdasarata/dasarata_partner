@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\partners;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Services\Partner\PaymentService;
 use App\Services\Partner\CustomerService;
@@ -58,14 +56,7 @@ class PaymentController extends Controller
 
     function printInvoice($id)
     {
-
-        $now = Carbon::now()->locale('id_ID')->isoFormat('LL');
-        $payment = $this->paymentService->find($id);
-
-        $pdf = Pdf::loadView('partners.paid-histories.invoice', [
-            'payment' => $payment,
-            'date' => $now,
-        ])->setPaper([0, 0, 419.528, 595.276]);
-        return $pdf->stream();
+        return $this->paymentService->printInvoice($id);
+        
     }
 }

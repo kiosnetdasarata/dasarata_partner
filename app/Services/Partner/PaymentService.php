@@ -5,12 +5,15 @@ namespace App\Services\Partner;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PartnerCustomerExportExcel;
+use App\Interfaces\Admin\PartnerInterface;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Interfaces\Partners\PaymentInterface;
 
-Class PaymentService
+class PaymentService
 {
-    public function __construct(protected PaymentInterface $paymentInterface)
-    {}
+    public function __construct(protected PaymentInterface $paymentInterface, protected PartnerInterface $partnerInterface)
+    {
+    }
 
     public function getToday()
     {
@@ -28,7 +31,7 @@ Class PaymentService
         $countHistory = $this->paymentInterface->countHistories();
         $nomor = str_pad($countHistory, 4, '0', STR_PAD_LEFT);
 
-        $noInvoice = 'GLC/INV-'.$nomor.'-'.$now;
+        $noInvoice = 'GLC/INV-' . $nomor . '-' . $now;
 
         return $noInvoice;
     }
@@ -45,15 +48,29 @@ Class PaymentService
 
     public function getThisMonth()
     {
-       return $this->paymentInterface->getThisMonth();
+        return $this->paymentInterface->getThisMonth();
+    }
+
+    public function printInvoice($id)
+    {
+        $partner = $this->partnerInterface->findByPartnerId(auth()->user()->partner_id);
+        $now = Carbon::now()->locale('id_ID')->isoFormat('LL');
+        $payment = $this->paymentInterface->find($id);
+
+        $pdf = Pdf::loadView('partners.paid-histories.invoice', [
+            'payment' => $payment,
+            'date' => $now,
+            'partner' => $partner,
+        ])->setPaper([0, 0, 419.528, 595.276]);
+        return $pdf->stream();
     }
 
     public function exportPaidThisMonth()
     {
         $data = $this->paymentInterface->getThisMonth();
-        $date =  $now = Carbon::now()->format('F-Y');
+        $date =  Carbon::now()->format('F-Y');
 
-        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-'.$date.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-' . $date . '.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 
     public function exportHistoryPaid($request)
@@ -62,6 +79,6 @@ Class PaymentService
         $endDate = $request['end_date'];
         $data = $this->paymentInterface->getPaidRangeDate($startDate, $endDate);
 
-        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-'.$startDate.'-'.$endDate.'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        return Excel::download(new PartnerCustomerExportExcel($data), 'payment-' . $startDate . '-' . $endDate . '.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 }
