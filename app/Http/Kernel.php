@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\DashBoardMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'mitra' => \App\Http\Middleware\PartnerMiddleware::class,
         'admin' => \App\Http\Middleware\isAdmin::class,
+        'dashboard' =>DashBoardMiddleware::class,
     ];
 }
