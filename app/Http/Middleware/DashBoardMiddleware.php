@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class PartnerMiddleware
+class DashBoardMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,12 @@ class PartnerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role === 'mitra'&& auth()->user()->is_active === 1) {
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return $next($request);
+        } elseif (auth()->check() && auth()->user()->role === 'mitra' && auth()->user()->is_active === 1) {
             return $next($request);
         }
-        
+
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
