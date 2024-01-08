@@ -58,20 +58,20 @@ Class PartnerService
             $filenametostore = uniqid().'_'.$slug.'.'.$request['logo_partner']->getClientOriginalExtension();
             $googleCloudStoragePath = 'logo-mitra/' . $filenametostore;
 
-            // $photoPath = UploadImageHelper::uploadPhoto($request['logo_partner'], $googleCloudStoragePath);
+            $photoPath = UploadImageHelper::uploadPhoto($request['logo_partner'], $googleCloudStoragePath);
 
-            // if ($photoPath === 404){
-            //     return throw new \Exception('Google Bucket Error');
-            // }elseif($photoPath === 401){
-            //     return throw new \Exception('Access Danied');
-            // }
+            if ($photoPath === 404){
+                return throw new \Exception('Google Bucket Error');
+            }elseif($photoPath === 401){
+                return throw new \Exception('Access Danied');
+            }
 
             $colReq = collect($request)->except('logo_partner');
             $mergeData = [
                 'id' => Uuid::uuid4()->getHex(),
                 'partner_id' => $partnerId,
-                'logo_partner' => 'https://storage.googleapis.com/developer_dasarata/logo-mitra/6576dd72e1842_maju_mundur.jpg',
-                // 'logo_partner' => 'https://storage.googleapis.com/'.$bucketName.'/'.'logo-mitra/'.$filenametostore,
+                // 'logo_partner' => 'https://storage.googleapis.com/developer_dasarata/logo-mitra/6576dd72e1842_maju_mundur.jpg',
+                'logo_partner' => 'https://storage.googleapis.com/'.$bucketName.'/'.'logo-mitra/'.$filenametostore,
                 'tanggal_terdaftar' => Carbon::now()->format('Y-m-d'),
                 'is_active' => 1,
             ];

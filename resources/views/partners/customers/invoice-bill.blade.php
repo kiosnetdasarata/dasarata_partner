@@ -239,25 +239,6 @@
                             </th>
 
                         </tr>
-                        {{-- <tr>
-                            <th style="border: none; padding:0px; width:50%;">
-                            </th>
-                            <th style="border: none; width:20%">
-                                <p class="p-style"><strong>Total
-                                    </strong>
-                                </p>
-                            </th>
-                            <th style=" width:5%">
-                                <p class="p-style"><strong>:
-                                    </strong>
-                                </p>
-                            </th>
-                            <th style="border: none; width:25%">
-                                <p class="p-style" style="text-align : right;"> 1.500.000
-
-                                </p>
-                            </th>
-                        </tr> --}}
                     </thead>
                 </table>
             </div>
@@ -270,10 +251,10 @@
                 </p>
                 <p class="p-style"
                     style=" width: auto; border-bottom: 1px solid black;  text-transform: uppercase; text-align:center;">
-                    Ja'far Shodiq
+                    {{ $partner->penanggung_jawab }}
                 </p>
                 <p class="p-style" style="text-align:center;">
-                    Manager Accounting
+                    {{ $partner->nama_perusahaan }}
                 </p>
             </div>
 
