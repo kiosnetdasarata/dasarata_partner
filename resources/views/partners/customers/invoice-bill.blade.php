@@ -146,7 +146,7 @@
                         </th>
                         <th>
                             <p class="p-style">
-                                : {{ $date }}
+                                : {{ $invoice }}
                             </p>
                             <p class="p-style">
                                 : {{ $customer->customer_id }}
@@ -171,7 +171,7 @@
                         <td style="width: 20px; text-align: center;">1</td>
                         <td style="padding: 10px;text-align: center;">
                             <p class="p-style">
-                                {{ $invoice }}
+                                {{ $periode }}
                             </p>
                         </td>
                         <td style="padding: 10px;text-align: center;">
@@ -246,15 +246,15 @@
             {{-- signature--}}
             <div class="signature">
                 <p class="p-style" style="margin-bottom: 70px;">
-                    {{ $partner->kecamatan }}, {{ $date }}
+                    {{-- {{ $partner->kecamatan }}, {{ $date }} --}}
 
                 </p>
                 <p class="p-style"
                     style=" width: auto; border-bottom: 1px solid black;  text-transform: uppercase; text-align:center;">
-                    {{ $partner->penanggung_jawab }}
+                    {{-- {{ $partner->penanggung_jawab }} --}}
                 </p>
                 <p class="p-style" style="text-align:center;">
-                    {{ $partner->nama_perusahaan }}
+                    {{-- {{ $partner->nama_perusahaan }} --}}
                 </p>
             </div>
 
@@ -263,8 +263,8 @@
     <footer>
         PT. GARUDA LINTAS CAKRAWALA
         <p style="font-size:12px; text-align:center;padding : 10px">
-            {{ $partner->alamat }}<br> KECAMATAN  {{ $partner->kecamatan }} -  {{ $partner->kabupaten }} - {{ $partner->provinsi }}
-            ({{ $partner->kode_pos }})
+            {{-- {{ $partner->alamat }}<br> KECAMATAN  {{ $partner->kecamatan }} -  {{ $partner->kabupaten }} - {{ $partner->provinsi }}
+            ({{ $partner->kode_pos }}) --}}
             <br>
         </p>
     </footer>
