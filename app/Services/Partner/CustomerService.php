@@ -165,7 +165,9 @@ class CustomerService
 
     public function invoice($request, $id)
     {
-        $invoice = Carbon::parse($request['tgl_pemasangan'], 'UTC')->isoFormat('MMMM');
+
+        $invoice = Carbon::parse($request['tgl_invoice'], 'UTC')->isoFormat('LL');
+        $periode = Carbon::parse($request['tgl_invoice'], 'UTC')->isoFormat('MMMM');
         $customer = $this->customerInterface->find($id);
         $partner = $this->partnerInterface->findByPartnerId(auth()->user()->partner_id);
 
@@ -173,6 +175,7 @@ class CustomerService
             'customer' => $customer,
             'date' => Carbon::now()->locale('id_ID')->isoFormat('LL'),
             'invoice' => $invoice,
+            'periode' => $periode,
             'partner' => $partner
         ])->setPaper([0, 0, 419.528, 595.276]);
         return $pdf->stream();

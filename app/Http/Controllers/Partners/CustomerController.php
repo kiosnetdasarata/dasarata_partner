@@ -11,6 +11,7 @@ use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\ImportCsvRequest;
 use App\Services\Partner\CustomerService;
 use App\Services\Partner\PaymentService;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CustomerController extends Controller
 {
@@ -28,9 +29,10 @@ class CustomerController extends Controller
 
         return view('partners.customers.index', compact('customers'));
     }
-    
+
     public function invoiceBatch(Request $request)
     {
+
         return $this->customerService->invoiceBatch($request);
     }
     //aktif
@@ -129,6 +131,7 @@ class CustomerController extends Controller
     public function invoice(Request $request, $id)
     {
         // $invoice = Carbon::createFromFormat('Y-m-d', $request['tgl_pemasangan'])->locale('id_ID')->isoFormat('LL');
+
        return $this->customerService->invoice($request, $id);
     }
 
@@ -145,6 +148,6 @@ class CustomerController extends Controller
             }
             return redirect()->route('partners.customers.dataCustomers')->with('error', $e->getMessage());
         }
-        
+
     }
 }
